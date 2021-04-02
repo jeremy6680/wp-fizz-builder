@@ -1,3 +1,3 @@
 <?php
 
-echo '<h2>HELLO TOI</h2>';
+echo '<h2>HELLO TOI</h2>'
