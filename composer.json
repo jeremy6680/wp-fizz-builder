@@ -1,0 +1,17 @@
+{
+    "name": "your-vendor/wpfizz",
+    "type": "wordpress-theme",
+    "require": {
+        "timber/timber": "*",
+        "advanced-custom-fields/advanced-custom-fields-pro": "^5.9",
+        "johnbillion/extended-cpts": "^4.5",
+        "wordplate/acf": "^9.1"
+    },
+    "license": "MIT",
+    "repositories": [
+        {
+          "type": "composer",
+          "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/library/" 
+        }
+      ]
+}
