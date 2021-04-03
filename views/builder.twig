@@ -2,9 +2,9 @@
 
 {% block content %}
 
- <h2>Je suis builder.twig</h2>
-{{post.meta('title')}}
-{{post.meta('phone')}}
-{{post.meta('email')}}
+  {% set components = post.get_field("page-components") %}
+  {% for component in components %}
+    {% include component.acf_fc_layout ~ "/index.twig" %}
+  {% endfor %}
 
 {% endblock %}
