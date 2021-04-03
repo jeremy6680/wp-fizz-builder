@@ -1,20 +1,47 @@
 <?php
+// Great snippet from Thierry Pigot: https://gist.github.com/thierrypigot/a07448abe1332e3c9d7c711cd28b2cd6
+//
+if( !class_exists('acf') )
+{
+	$tp_acf_notice_msg = __( 'This website needs "Advanced Custom Fields Pro" to run. Please download and activate it', 'tp-notice-acf' );
+	
+	/*
+	*	Admin notice
+	*/
+	add_action( 'admin_notices', 'tp_notice_missing_acf' );
+	function tp_notice_missing_acf()
+	{
+		global $tp_acf_notice_msg;
+		
+		echo '<div class="notice notice-error notice-large"><div class="notice-title">'. $tp_acf_notice_msg .'</div></div>';
+	}
 
-// Define path and URL to the ACF plugin.
-define( 'MY_ACF_PATH', plugin_dir_path( __DIR__ ). '/vendor/advanced-custom-fields/advanced-custom-fields-pro/' );
-define( 'MY_ACF_URL', plugin_dir_path( __DIR__ ) . '/vendor/advanced-custom-fields/advanced-custom-fields-pro/' );
 
-// Include the ACF plugin.
-include_once( MY_ACF_PATH . 'acf.php' );
-
-// Customize the url setting to fix incorrect asset URLs.
-add_filter('acf/settings/url', 'my_acf_settings_url');
-function my_acf_settings_url( $url ) {
-    return MY_ACF_URL;
+	/*
+	*	Frontend notice
+	*/
+	add_action( 'template_redirect', 'tp_notice_frontend_missing_acf', 0 );
+	function tp_notice_frontend_missing_acf()
+	{
+		global $tp_acf_notice_msg;
+		
+		wp_die( $tp_acf_notice_msg );
+	}
 }
-
-// (Optional) Hide the ACF admin menu item.
-add_filter('acf/settings/show_admin', 'my_acf_settings_show_admin');
-function my_acf_settings_show_admin( $show_admin ) {
-    return false;
+else
+{
+	/*
+	*	Mask ACF in WordPress Admin Menu
+	* /!\ Change 'MY_USER_LOGIN_ON_THIS_WEBSITE' to your login
+	*/
+	add_action( 'plugins_loaded', 'tp_mask_acf' );
+	function tp_mask_acf()
+	{
+		$current_user = wp_get_current_user();
+		
+		if( 'MY_USER_LOGIN_ON_THIS_WEBSITE' != $current_user->user_login )
+		{
+			define( 'ACF_LITE' , true );
+		}
+	}
 }
