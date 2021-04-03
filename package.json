@@ -23,7 +23,6 @@
     "sass-loader": "^10.1.1"
   },
   "dependencies": {
-    "chota": "^0.8.0",
-    "import-glob-loader": "^1.1.0"
+    "import-glob-loader": "^1.1.0",
   }
 }

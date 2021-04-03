@@ -1,17 +1,17 @@
 {% if component %}
-<section is="wpf-component-hero">
-    <div class="row">
-        <div class="col">
+<section is="wpf-component-hero container">
+    <div class="row columns">
+        <div class="col column col-6">
             {% set hero = component.hero %}
             <h1>{{hero.title}}</h1>
             <h2 class="subtitle">{{hero.outline}}</h2>
             <div class="buttons">
                 {% set button = hero.buttons %}
                 <a class="button primary" href="{{button.cta_url}}">{{button.cta_name}}</a>
-                <a class="button outline primary" href="{{button.other_link_url}}">{{button.other_link_name}}</a>
+                <a class="button button-outline outline primary" href="{{button.other_link_url}}">{{button.other_link_name}}</a>
             </div>
         </div>
-        <div class="col">
+        <div class="col column col-6">
             <img src="{{hero.background_image.url}}" alt="">
         </div>            
     </div>

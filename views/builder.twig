@@ -3,8 +3,11 @@
 {% block content %}
 
   {% set components = post.get_field("page-components") %}
-  {% for component in components %}
-    {% include component.acf_fc_layout ~ "/index.twig" %}
-  {% endfor %}
-
+  {% if components %}
+  	<div class="wpfb-page-builder" is="page-builder-container">
+	  {% for component in components %}
+	    {% include component.acf_fc_layout ~ "/index.twig" %}
+	  {% endfor %}
+	</div>
+  {% endif %}
 {% endblock %}
