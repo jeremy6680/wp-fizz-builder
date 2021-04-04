@@ -1,6 +1,6 @@
 {
-    "name": "your-vendor/wpfizz",
-    "type": "wordpress-theme",
+    "name": "your-vendor/wp-fizz-builder",
+    "type": "wordpress-plugin",
     "require": {
         "timber/timber": "*",
         "advanced-custom-fields/advanced-custom-fields-pro": "^5.9",

@@ -1,4 +1,6 @@
-{% extends "base.twig" %}
+{% block header %}
+	{{ function( 'get_header' ) }} 
+{% endblock %}
 
 {% block content %}
   {% set components = post.get_field("page-components") %}
@@ -9,4 +11,8 @@
 	  {% endfor %}
 	</div>
   {% endif %}
+{% endblock %}
+
+{% block footer %}
+	{{ function( 'get_footer' ) }} 
 {% endblock %}
