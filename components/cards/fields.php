@@ -19,7 +19,6 @@ return 	Repeater::make('Cards')
                 ->returnFormat('object'), // object or id (default)
             Relationship::make('Posts')
             ->instructions('Add posts')
-            ->postTypes(['docs'])
             ->filters([
                 'search', 
                 'taxonomy'
