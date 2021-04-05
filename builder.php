@@ -11,31 +11,20 @@ use WordPlate\Acf\Location;
 ********** PAGE BUILDER WITH ACF  ********
 ******************************************/ 
 
-$layouts = [];
+$layout = [];
 
-function AddLayout() {
+foreach ( (glob(plugin_dir_path( __FILE__ ) . "components/*") ) as $component  ) {
 
-	foreach ( glob( plugin_dir_path( __DIR__ ) . 'components/*' ) as $component ) {
+$component = basename($component);
 
-		$component = basename($component);
-		$name = ucfirst($component);
-		$fields = plugin_dir_path( __DIR__ ) . "components/". $component . "/fields.php";
-	
-			var_dump($component);
-			var_dump($name);
-			var_dump($fields);
-			
-			Layout::make($name)
-			->fields([require $fields])
+$layout[] = Layout::make(ucfirst($component))
+			->fields([
+				require plugin_dir_path( __FILE__ ) . 'components/' . $component . '/fields.php'
+			])
 			->layout('block');
-			
-	
-	}
+
 
 }
-
-AddLayout();
-
 
 register_extended_field_group([
 	'title' => 'Page Builder',
@@ -43,7 +32,7 @@ register_extended_field_group([
 	FlexibleContent::make('Components', 'page-components')
 		->instructions('Create your own layout from the available components')
 		->buttonLabel('Add a page component')
-		->layouts($layouts)
+		->layouts($layout)
 	],
 	'location' => [
         Location::if('page_template', '==', 'pagebuilder-template.php'),
