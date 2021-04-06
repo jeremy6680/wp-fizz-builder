@@ -92,52 +92,52 @@ If the two plugins are not installed on your site, no worries, you will be promp
 
 1. **Clone the repo**<br>
 When using the command line: first, go to your plugins folder:<br>
-   ```$
-   cd <myproject>/wp-content/plugins
-   ```<br>
+   ```
+   $ cd <myproject>/wp-content/plugins
+   ```
 Then, run:<br>
-   ```$
-   git clone https://github.com/jeremy6680/wp-fizz-builder.git
+   ```
+   $ git clone https://github.com/jeremy6680/wp-fizz-builder.git
    ```
    
    Alternatively, you can [download the zip](https://github.com/jeremy6680/wp-fizz-builder/archive/refs/heads/main.zip) and upload it to your WordPress website like any other plugin.
    
 2. **Install backend dependencies**<br>
 When using the command line: first, go to the WP Fizz Builder folder:<br>
-   ```$
-   cd wp-fizz-builder
-   ```<br>
+   ```
+   $ cd wp-fizz-builder
+   ```
 Then, run:<br>
-   ```$
-   composer install
-   ```<br>
+   ```
+   $ composer install
+   ```
 This will install the **Extended ACF library**.<br>
 If you haven't installed and activated **ACF PRO** and **Timber**, you can do that now, from your WordPress dashboard.<br> 
 NB. I didn't include Timber in the composer.json file, but if you prefer, you can install it from the command line:<br>
-   ```$
-   composer require timber/timber
+   ```
+   $ composer require timber/timber
    ```
    
 3. **Install frontend dependencies**<br>
 Okay, now let's install the frontend tools we need:
 
-   ```$
-   npm install
+   ```
+   $ npm install
    ```
    This will notably allow you to use Sass, jQuery, Bulma & BrowserSync when building components for the Page Builder.<br>
 If you look at the `/assets` folder, you'll notice a `/src` folder in which you can write your sass and javascript. <br>
 The `/dist` folder is missing. Let's create it now:<br>
-   ```$
-   npm run dev
-   ``` <br>
+   ```
+   $ npm run dev
+   ```
 In order to use BrowserSync, you'll need to run the following command:<br>
-   ```$
-   npm run watch
-   ``` <br>
+   ```
+   $ npm run watch
+   ```
 Finally, to compile your files for production, you'll need to run this:<br>
-  ```$
-   npm run prod
-   ``` <br>
+  ```
+   $ npm run prod
+   ```
 In the docs I'll go into more details about how to create/customize components. 
 
 <!-- USAGE EXAMPLES -->
