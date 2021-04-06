@@ -20,17 +20,17 @@ function wpfb_catch_plugin_template($template) {
 * Hide editor on pages which have the Page Builder Template.
 *
 */
-	function wpfb_hide_editor() {
-		// Get the Post ID.
-		$id = !empty($_POST['post_id']) ? $_POST['post_id'] : '';
-		$post_id = !empty($_GET['post']) ? $_GET['post'] : $id ;
-		if( !isset( $post_id ) ) return;
+function wpfb_hide_editor() {
+	// Get the Post ID.
+	$id = !empty($_POST['post_id']) ? $_POST['post_id'] : '';
+	$post_id = !empty($_GET['post']) ? $_GET['post'] : $id ;
+	if( !isset( $post_id ) ) return;
 
-		// Hide the editor on a page with a specific page template
-		// Get the name of the Page Template file.
-		$template_file = get_post_meta($post_id, '_wp_page_template', true);
+	// Hide the editor on a page with a specific page template
+	// Get the name of the Page Template file.
+	$template_file = get_post_meta($post_id, '_wp_page_template', true);
 
-		if($template_file == 'pagebuilder-template.php'){ // the filename of the page template
-			remove_post_type_support('page', 'editor');
-		}
+	if($template_file == 'pagebuilder-template.php'){ // the filename of the page template
+		remove_post_type_support('page', 'editor');
 	}
+}

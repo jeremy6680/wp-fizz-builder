@@ -2,9 +2,6 @@
     "name": "your-vendor/wp-fizz-builder",
     "type": "wordpress-plugin",
     "require": {
-        "timber/timber": "*",
-        "advanced-custom-fields/advanced-custom-fields-pro": "^5.9",
-        "johnbillion/extended-cpts": "^4.5",
         "wordplate/acf": "^9.1"
     },
     "license": "MIT",

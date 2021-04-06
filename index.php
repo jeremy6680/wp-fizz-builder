@@ -21,7 +21,6 @@ $acfpath = get_stylesheet_directory() . '/vendor/advanced-custom-fields/advanced
 if(file_exists($acfpath)):
     include_once($acfpath);
 endif;
-include( 'includes/timber.php' );
 include( 'includes/activate.php' );
 include( 'includes/init.php' );
 include( 'includes/front/enqueue.php' );
@@ -36,7 +35,7 @@ add_action( 'admin_init', 'wpfb_hide_editor' );
 add_action( 'wp_enqueue_scripts', 'wpfb_scripts' );
 add_filter ( 'theme_page_templates', 'wpfb_add_page_template' );
 add_filter( 'template_include', 'wpfb_catch_plugin_template' );
-add_action( 'tgmpa_register', 'ju_register_required_plugins' );
+add_action( 'tgmpa_register', 'wpfb_register_required_plugins' );
 
 // Shortcodes
 

@@ -1,6 +1,6 @@
 <?php
 
-function ju_register_required_plugins() {
+function wpfb_register_required_plugins() {
 	$plugins = [
 		[
 			'name' 		=> 'Timber',
