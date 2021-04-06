@@ -10,19 +10,16 @@ else {
     require_once(plugin_dir_path( __DIR__ ) . '/vendor/autoload.php');
 } 
 
-if (class_exists('Timber')) {
+$timber = new \Timber\Timber();
 
-    $timber = new \Timber\Timber();
+// Set Timber Locations + possibility to override templates in theme
+Timber::$locations = array(
 
-    // Set Timber Locations + possibility to override templates in theme
-    Timber::$locations = array(
+    get_stylesheet_directory() . '/views',
+    get_stylesheet_directory() . '/components',
+    get_template_directory() . '/views',
+    get_template_directory() . '/components',
+    plugin_dir_path( __DIR__ ) . '/views',
+    plugin_dir_path( __DIR__ ) . '/components'
+);
 
-        get_stylesheet_directory() . '/views',
-        get_stylesheet_directory() . '/components',
-        get_template_directory() . '/views',
-        get_template_directory() . '/components',
-        plugin_dir_path( __DIR__ ) . '/views',
-        plugin_dir_path( __DIR__ ) . '/components'
-    );
-
-}
