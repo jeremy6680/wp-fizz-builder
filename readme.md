@@ -303,14 +303,14 @@ Project Link: [https://github.com/jeremy6680/wp-fizz-builder](https://github.com
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/jeremy6680/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/jeremy6680/repo/graphs/contributors
+[contributors-url]: https://github.com/jeremy6680/wp-fizz-builder/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/jeremy6680/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/jeremy6680/repo/network/members
+[forks-url]: https://github.com/jeremy6680/wp-fizz-builder/network/members
 [stars-shield]: https://img.shields.io/github/stars/jeremy6680/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/jeremy6680/repo/stargazers
+[stars-url]: https://github.com/jeremy6680/wp-fizz-builder/stargazers
 [issues-shield]: https://img.shields.io/github/issues/jeremy6680/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/jeremy6680/repo/issues
+[issues-url]: https://github.com/jeremy6680/wp-fizz-builder/issues
 [license-shield]: https://img.shields.io/github/license/jeremy6680/repo.svg?style=for-the-badge
-[license-url]: https://github.com/jeremy6680/repo/blob/master/LICENSE.txt
+[license-url]: https://github.com/jeremy6680/wp-fizz-builder/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/jeremy6680
