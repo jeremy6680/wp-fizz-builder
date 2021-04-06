@@ -37,9 +37,6 @@ add_filter ( 'theme_page_templates', 'wpfb_add_page_template' );
 add_filter( 'template_include', 'wpfb_catch_plugin_template' );
 add_action( 'tgmpa_register', 'wpfb_register_required_plugins' );
 
-// Shortcodes
-
-
 
 
 
