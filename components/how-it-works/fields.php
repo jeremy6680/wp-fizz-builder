@@ -23,7 +23,7 @@ return Group::make('How it Works', 'how_it_works')
                 Link::make('Other link URL', 'other_link_URL'),
             ]),
             Repeater::make('Steps')
-            ->instructions('Each stepin the list includes a title and a short description.')
+            ->instructions('Each step in the list includes a title and a short description.')
             ->fields([
                 Text::make('Name'),
                 Textarea::make('Description')

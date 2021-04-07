@@ -1,11 +1,3 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
 <p align="center">
 
   <h3 align="center">WP Fizz Builder</h3>
@@ -69,7 +61,11 @@
 
 ### What Does This Plugin Do?
 
-This plugin creates a **"Page Builder Template"** (cf [Page Templates in WordPress' Theme Handbook](https://developer.wordpress.org/themes/template-files-section/page-template-files/#creating-custom-page-templates-for-global-use)). Choosing this template from [Page Attributes](https://make.wordpress.org/support/user-manual/content/pages/page-attributes/) has two effects:
+This plugin creates a **"Page Builder Template"** (cf [Page Templates in WordPress' Theme Handbook](https://developer.wordpress.org/themes/template-files-section/page-template-files/#creating-custom-page-templates-for-global-use)). 
+
+This template is actually a blank canvas, only displaying the theme's header and theme's footer (it should work with most themes, as long as the theme is using the `header.php` and `footer.php` files). If your theme is already based on Timber, then it should work out of the box if you have a `/views/base.twig` file. 
+
+Choosing this template from [Page Attributes](https://make.wordpress.org/support/user-manual/content/pages/page-attributes/) has two effects:
 
 1. it **removes the default editor** (whether it's Gutenberg or the Classic editor);
 2. instead, it brings a **Page Builder**, whose different components can be created using a combination of **ACF** (for the logic) and **Timber** (for the templating part). For more information about this, please refer to the documentation below.
@@ -90,54 +86,57 @@ If the two plugins are not installed on your site, no worries, you will be promp
 
 ### Installation
 
-1. **Clone the repo**<br>
+1. **Clone the repo**
+
 When using the command line: first, go to your plugins folder:<br>
    ```
    $ cd <myproject>/wp-content/plugins
    ```
 Then, run:<br>
-   ```
+```
    $ git clone https://github.com/jeremy6680/wp-fizz-builder.git
-   ```
+```
    
    Alternatively, you can [download the zip](https://github.com/jeremy6680/wp-fizz-builder/archive/refs/heads/main.zip) and upload it to your WordPress website like any other plugin.
    
-2. **Install backend dependencies**<br>
+2. **Install backend dependencies**
+
 When using the command line: first, go to the WP Fizz Builder folder:<br>
-   ```
+```
    $ cd wp-fizz-builder
-   ```
+```
 Then, run:<br>
-   ```
+```
    $ composer install
-   ```
+```
 This will install the **Extended ACF library**.<br>
 If you haven't installed and activated **ACF PRO** and **Timber**, you can do that now, from your WordPress dashboard.<br> 
 NB. I didn't include Timber in the composer.json file, but if you prefer, you can install it from the command line:<br>
-   ```
+```
    $ composer require timber/timber
-   ```
+```
    
-3. **Install frontend dependencies**<br>
+3. **Install frontend dependencies**
+
 Okay, now let's install the frontend tools we need:
 
-   ```
+```
    $ npm install
-   ```
+```
    This will notably allow you to use Sass, jQuery, Bulma & BrowserSync when building components for the Page Builder.<br>
 If you look at the `/assets` folder, you'll notice a `/src` folder in which you can write your sass and javascript. <br>
 The `/dist` folder is missing. Let's create it now:<br>
-   ```
+```
    $ npm run dev
-   ```
+```
 In order to use BrowserSync, you'll need to run the following command:<br>
-   ```
+```
    $ npm run watch
-   ```
+```
 Finally, to compile your files for production, you'll need to run this:<br>
-  ```
+```
    $ npm run prod
-   ```
+```
 In the docs I'll go into more details about how to create/customize components. 
 
 <!-- USAGE EXAMPLES -->
@@ -155,69 +154,90 @@ Each component includes four files:<br>
 * `script.js` 
 * `style.scss`
 
-As you can see, each component is an entity in itself; it has its own styles, scripts, logic and layout. <br>
+As you can see, each component is an entity in itself; it has its own styles, scripts, logic and layout.
 
-The ACF fields can be written in PHP following Extended ACF's guidelines.<br>
-Here's an example of the code I needed to create the fields for the 'Hero' component:<br>
+The ACF fields can be written in PHP following [Extended ACF's guideline](https://github.com/wordplate/extended-acf#usage). You can also visit [ACF's offocial documentation](https://www.advancedcustomfields.com/resources/register-fields-via-php/#field-settings) to read more about the different field settings.
+
+Writing the fields in PHP is great — that allows you to commit them in Git (so you won't lose any field) and save you time if you need to install your client's website locally to troubleshoot an issue.
+
+Here's an example of the code I needed to create the fields for the 'Cards' component:<br>
 
 
 ```php
-    <?php
+<?php
 
-  use WordPlate\Acf\Fields\Group;
-  use WordPlate\Acf\Fields\Text;
-  use WordPlate\Acf\Fields\Link;
-  use WordPlate\Acf\Fields\Textarea;
-  use WordPlate\Acf\Fields\Image;
-  
-  return Group::make('Hero')
-          ->instructions('Add a hero block with title, content and image to the page.')
-          ->fields([
-              Text::make('Title'),
-              Textarea::make('Outline')
-              ->rows(3),
-              Image::make('Background Image', 'background_image')
-              ->returnFormat('object'),
-              Group::make('Buttons')
-              ->instructions('Add a hero block with title, content and image to the page.')
-              ->fields([
-                  Text::make('CTA name', 'cta_name'),
-                  Link::make('CTA URL', 'cta_url'),
-                  Text::make('Other link name', 'other_link_name'),
-                  Link::make('Other link URL', 'other_link_URL'),
-              ])
-              ->layout('table')
-          ])
-          ->layout('row');
+use WordPlate\Acf\Fields\Repeater;
+use WordPlate\Acf\Fields\Image;
+use WordPlate\Acf\Fields\Relationship;
+use WordPlate\Acf\Fields\Taxonomy;
+
+return  Repeater::make('Cards')
+        ->instructions('Add a card.')
+        ->fields([
+            Image::make('Image'),
+            Taxonomy::make('Category')
+                ->instructions('Select one term.')
+                ->appearance('select') // checkbox, multi_select, radio or select
+                ->returnFormat('object'), // object or id (default)
+            Relationship::make('Posts')
+            ->instructions('Add posts')
+            ->filters([
+                'search', 
+                'taxonomy'
+            ])
+            ->elements(['featured_image'])
+            ->min(3)
+            ->max(3)
+            ->returnFormat('object') // id or object (default)
+        ])
+        ->min(1)
+        ->collapsed('card')
+        ->buttonLabel('Add a card')
+        ->layout('row');
 ```
 
 Now, here's the **Twig** template (no PHP code!):
 
 ```twig
 {% if component %}
-<section class="hero" is="wpf-component-hero">
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-vcentered">
-                <div class="column is-6">
-                    {% set hero = component.hero %}
-                    <h1 class="title is-spaced">{{hero.title}}</h1>
-                    <p class="subtitle">{{hero.outline}}</p>
-                    <div class="buttons">
-                        {% set button = hero.buttons %}
-                        <a class="button is-primary" href="{{button.cta_url}}">{{button.cta_name}}</a>
-                        <a class="button is-text" href="{{button.other_link_url}}">{{button.other_link_name}}</a>
-                    </div>
+  <section class="{{ classes }} section cards" is="wpf-component-cards" data-{{ block.id }}>
+    <div class="container py-4">
+      <div class="columns is-multiline">
+          {% set cards = component.cards %}
+          {% for card in cards %}
+          <div class="column is-12 is-4-widescreen">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-header-title">
+                  <h5 class="subtitle is-5">{{card.category}}</h5>
                 </div>
-                <div class="column is-6">
-                    <img src="{{hero.background_image.url}}" alt="">
-                </div>            
+                <div class="card-header-icon"><a href="{{Term(card.category).link }}">{{ __('Sell all', 'wpf-theme') }}</a></div>
+              </div>
+              <div class="card-image">
+                <a href="{{Term(card.category).link }}"><img src="{{ Image(card.image).src|resize(432,324)}}" alt=""></a>
+              </div>
+              <div class="card-content">
+                <div class="menu">
+                  <ul class="menu-list">
+                  {% for item in Post(card.posts) %}
+                  <li><a href="{{item.link}}"><span>{{item.title}}</span><span class="is-pulled-right">&rsaquo;</span></a></li>
+                  {% endfor %}
+                  </ul>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+          {% endfor %}
+      </div>
     </div>
-</section>
+  </section>
 {% endif %}
 ```
+
+And here's how it will display on the frontend, after adding some content via the backend:
+
+!['Cards' component](images/cards.png)
+
 If you're not familiar with **Twig** in general and **Timber** in particular, I would recommend you to have a look at these two documentations:
 
 * [Twig's documenation](https://twig.symfony.com/)
@@ -233,8 +253,8 @@ The sass file looks like this:
 // Import variables
 //@import '../../../assets/src/scss/custom-variables';
 
-[is="wpf-component-hero"] {
-
+[is="wpf-component-cards"] {
+    
 }
 ```       
 
@@ -298,19 +318,3 @@ Project Link: [https://github.com/jeremy6680/wp-fizz-builder](https://github.com
 * [ACF PRO](https://www.advancedcustomfields.com/pro/), the *other* plugin that made me love WordPress development!
 * [Extended ACF](https://github.com/wordplate/extended-acf)
 * [Bulma](https://bulma.io/)
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/jeremy6680/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/jeremy6680/wp-fizz-builder/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/jeremy6680/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/jeremy6680/wp-fizz-builder/network/members
-[stars-shield]: https://img.shields.io/github/stars/jeremy6680/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/jeremy6680/wp-fizz-builder/stargazers
-[issues-shield]: https://img.shields.io/github/issues/jeremy6680/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/jeremy6680/wp-fizz-builder/issues
-[license-shield]: https://img.shields.io/github/license/jeremy6680/repo.svg?style=for-the-badge
-[license-url]: https://github.com/jeremy6680/wp-fizz-builder/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/jeremy6680

@@ -19,7 +19,6 @@ return Group::make('Hero')
             Image::make('Background Image', 'background_image')
             ->returnFormat('object'),
             Group::make('Buttons')
-            ->instructions('Add a hero block with title, content and image to the page.')
             ->fields([
                 Text::make('CTA name', 'cta_name'),
                 Link::make('CTA URL', 'cta_url'),
