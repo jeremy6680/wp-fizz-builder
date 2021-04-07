@@ -11,7 +11,7 @@ function wpfb_catch_plugin_template($template) {
     // If tp-file.php is the set template
     if( is_page_template('pagebuilder-template.php') )
         // Update path(must be path, use WP_PLUGIN_DIR and not WP_PLUGIN_URL) 
-        $template = WP_PLUGIN_DIR . '/wp-fizz-builder/templates/pagebuilder-template.php';
+        $template = plugin_dir_path( __DIR__ ) . '/templates/pagebuilder-template.php';
     // Return
     return $template;
 }
