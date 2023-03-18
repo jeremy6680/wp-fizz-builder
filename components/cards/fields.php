@@ -4,10 +4,10 @@
 **** COMPONENT: CARDS *******
 *****************************/ 
 
-use WordPlate\Acf\Fields\Repeater;
-use WordPlate\Acf\Fields\Image;
-use WordPlate\Acf\Fields\Relationship;
-use WordPlate\Acf\Fields\Taxonomy;
+use Extended\ACF\Fields\Repeater;
+use Extended\ACF\Fields\Image;
+use Extended\ACF\Fields\Relationship;
+use Extended\ACF\Fields\Taxonomy;
 
 return 	Repeater::make('Cards')
         ->instructions('Add a card.')

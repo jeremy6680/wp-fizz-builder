@@ -4,11 +4,11 @@
 **** COMPONENT: FEATURES ****
 *****************************/
 
-use WordPlate\Acf\Fields\Repeater;
-use WordPlate\Acf\Fields\Group;
-use WordPlate\Acf\Fields\Text;
-use WordPlate\Acf\Fields\Textarea;
-use WordPlate\Acf\Fields\Link;
+use Extended\ACF\Fields\Repeater;
+use Extended\ACF\Fields\Group;
+use Extended\ACF\Fields\Text;
+use Extended\ACF\Fields\Textarea;
+use Extended\ACF\Fields\Link;
 
 return Group::make('How it Works', 'how_it_works')
         ->fields([

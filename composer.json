@@ -1,14 +1,19 @@
 {
     "name": "your-vendor/wp-fizz-builder",
     "type": "wordpress-plugin",
-    "require": {
-        "wordplate/acf": "^9.1"
-    },
     "license": "MIT",
     "repositories": [
         {
           "type": "composer",
           "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/library/" 
         }
-      ]
+      ],
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    },
+    "require": {
+        "vinkla/extended-acf": "^13.2"
+    }
 }

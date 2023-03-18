@@ -2,7 +2,7 @@
 /*
  * Plugin Name: WP Fizz Builder
  * Description: A simple Page Builder for WordPress, built with ACF Pro and Timber
- * Version: 1.0.2
+ * Version: 1.0.23
  * Author: Jeremy Marchandeau
  * Author URI: https://jeremymarchandeau.com
  * Text Domain: fizz-builder

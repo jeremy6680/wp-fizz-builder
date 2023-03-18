@@ -1,8 +1,8 @@
 <?php
 
-use WordPlate\Acf\Fields\FlexibleContent;
-use WordPlate\Acf\Fields\Layout;
-use WordPlate\Acf\Location;
+use Extended\ACF\Fields\FlexibleContent;
+use Extended\ACF\Fields\Layout;
+use Extended\ACF\Location;
 
 /*****************************************
 ********** PAGE BUILDER WITH ACF  ********
@@ -45,6 +45,6 @@ register_extended_field_group([
 		->layouts($components)
 	],
 	'location' => [
-        Location::if('page_template', '==', 'pagebuilder-template.php'),
+        Location::where('page_template', '==', 'pagebuilder-template.php'),
     ]
 ]);

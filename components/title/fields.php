@@ -4,9 +4,9 @@
 **** COMPONENT: TITLE *******
 *****************************/ 
 
-use WordPlate\Acf\Fields\Group;
-use WordPlate\Acf\Fields\Text;
-use WordPlate\Acf\Fields\Textarea;
+use Extended\ACF\Fields\Group;
+use Extended\ACF\Fields\Text;
+use Extended\ACF\Fields\Textarea;
 
 return Group::make('Heading')
         ->fields([

@@ -4,11 +4,11 @@
 **** COMPONENT: HERO ********
 *****************************/ 
 
-use WordPlate\Acf\Fields\Group;
-use WordPlate\Acf\Fields\Text;
-use WordPlate\Acf\Fields\Link;
-use WordPlate\Acf\Fields\Textarea;
-use WordPlate\Acf\Fields\Image;
+use Extended\ACF\Fields\Group;
+use Extended\ACF\Fields\Text;
+use Extended\ACF\Fields\Link;
+use Extended\ACF\Fields\Textarea;
+use Extended\ACF\Fields\Image;
 
 return Group::make('Hero')
         ->instructions('Add a hero block with title, content and image to the page.')

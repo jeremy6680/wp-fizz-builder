@@ -7,7 +7,7 @@ if (file_exists($filepath)) {
     require_once(get_template_directory() . '/vendor/autoload.php');
 }  
 else {
-    require_once(plugin_dir_path( __DIR__ ) . '/vendor/autoload.php');
+    require_once(plugin_dir_path( __DIR__ ) . 'vendor/autoload.php');
 } 
 
 $timber = new \Timber\Timber();
